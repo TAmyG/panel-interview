@@ -13,20 +13,25 @@ export class AuthService {
         if (user['isLocked']) {
             await user.incLoginAttempts();
             console.log('USER BLOCKED')
-            return null;
+            return { error: `User blocked until` };
         }
 
 
         if (user.validatePassword(password)) {
+            const updates = {
+                $set: { loginAttempts: 0 },
+                $unset: { lockUntil: 1 },
+            };
+            await user.update(updates);
+
             const { password, ...result } = user;
 
-
-
-            return result;
+            // clean loginAttempts y blockedUntil
+            return { user: result };
         }
 
         await user.incLoginAttempts();
-        return null;
+        return { error: `Invalid credentials. Attempts: ${user.loginAttempts}` };
     }
 
     async login(user: User) {
