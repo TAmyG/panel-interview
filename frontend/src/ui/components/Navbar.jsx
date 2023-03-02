@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import nasaLogo from '../../assets/nasa-logo.svg';
 
 
 export const Navbar = () => {
@@ -15,6 +16,8 @@ export const Navbar = () => {
         className="navbar-brand"
         to="/"
       >
+        <img src={nasaLogo} style={{ width: "50", height: "50" }} />
+
         NASA Wilfires
       </Link>
 
