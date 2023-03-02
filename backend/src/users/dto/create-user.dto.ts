@@ -1,4 +1,4 @@
-import { IsInt, IsString, IsDateString } from 'class-validator';
+import { IsInt, IsString, IsDateString, IsOptional } from 'class-validator';
 
 export class CreateUserDto {
     @IsString()
@@ -7,6 +7,7 @@ export class CreateUserDto {
     @IsString()
     readonly fullname: string;
 
+    @IsOptional()
     @IsDateString()
     readonly birth: string;
 

@@ -9,24 +9,18 @@ export class AuthService {
 
     async validateUser(email: string, password: string): Promise<any> {
         const user = await this.usersService.findByOne(email);
-        console.log(user['isLocked']);
         if (user['isLocked']) {
             await user.incLoginAttempts();
-            console.log('USER BLOCKED')
-            return { error: `User blocked until` };
+            console.log('USER BLOCKED', `Invalid credentials. Attempts: ${user.loginAttempts}`);
+            return { error: `User blocked until ${new Date(user.lockUntil)}` };
         }
 
 
         if (user.validatePassword(password)) {
-            const updates = {
-                $set: { loginAttempts: 0 },
-                $unset: { lockUntil: 1 },
-            };
-            await user.update(updates);
-
             const { password, ...result } = user;
 
             // clean loginAttempts y blockedUntil
+            await user.resetLoginAttempts();
             return { user: result };
         }
 

@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { authConstants, jwtConstants } from "src/auth/constants";
 
 
@@ -36,6 +36,7 @@ export class User {
 
     validatePassword: Function
     incLoginAttempts: Function
+    resetLoginAttempts: Function
 
 }
 
@@ -78,7 +79,17 @@ UserSchema.methods.incLoginAttempts = function (cb) {
     if (this.loginAttempts + 1 >= max && !this.isLocked) {
         updates['$set'] = { lockUntil: Date.now() + lock };
     }
-    console.log(updates, this.loginAttempts, this.lockUntil)
+    console.log(this.loginAttempts, this.lockUntil)
     return this.update(updates, cb);
 
+}
+
+UserSchema.methods.resetLoginAttempts = function (cb) {
+    if (this.loginAttempts || this.lockUntil) {
+        const updates = {
+            $set: { loginAttempts: 0 },
+            $unset: { lockUntil: 0 },
+        };
+        return this.update(updates, cb);
+    }
 }
