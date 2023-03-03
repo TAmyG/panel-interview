@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { UsersService } from './users/users.service';
+import { WildfireModule } from './wildfire/wildfire.module';
 
 @Module({
   imports: [
@@ -25,7 +26,8 @@ import { UsersService } from './users/users.service';
         return { uri };
       }
     }),
-    UsersModule
+    UsersModule,
+    WildfireModule
   ],
   controllers: [AppController],
   providers: [AppService],

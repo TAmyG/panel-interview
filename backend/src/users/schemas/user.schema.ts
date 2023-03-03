@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
 import * as bcrypt from 'bcryptjs';
-import { authConstants, jwtConstants } from "src/auth/constants";
+import { authConstants, jwtConstants } from "src/constants";
 
 
 const saltOrRounds = 10;
