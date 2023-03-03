@@ -7,14 +7,10 @@ services:
     image: backend-nestjs
     container_name: backend
     restart: unless-stopped
-    depends_on:
-      - mongodb
     env_file: .env
     environment:
-      - MONGO_HOSTNAME=mongodb
-      - MONGO_PORT=$MONGO_PORT
-      - MONGO_DB=$MONGO_DB
       - NODE_ENV=production
+      - OPENCAGE_API_KEY=$OPENCAGE_API_KEY
     ports:
       - "3000:3000"
     volumes:
@@ -23,27 +19,6 @@ services:
     networks:
       - app-network
     # command: ./wait-for.sh db:27017 -- /home/node/app/node_modules/.bin/nodemon app.js
-
-  mongodb:
-    image: mongo
-    container_name: mongodb
-    restart: always
-    ports:
-      - "27017:27017"
-    volumes:
-      - dbdata:/data/db
-    networks:
-      - app-network
-
-  mongo-express:
-    image: mongo-express
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_URL: mongodb://mongodb:27017/
-    networks:
-      - app-network
 
 networks:
   app-network:
