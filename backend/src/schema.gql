@@ -3,19 +3,36 @@
 # ------------------------------------------------------
 
 type Event {
-  ISO_3166Alpha3: String
   closed: String
   description: String
-  events: [Event]
   geometry: [Geometry]
   id: String
   link: String
   title: String
 }
 
+type GeoComponent {
+  ISO3166Alpha2: String
+  ISO3166Alpha3: String
+  _category: String
+  _type: String
+  city: String
+  city_district: String
+  continent: String
+  country: String
+  country_code: String
+  county: String
+  county_code: String
+  hamlet: String
+  political_union: String
+  postcode: String
+  road: String
+}
+
 type Geometry {
   coordinates: [Float]!
   date: String
+  geoComponent: GeoComponent
   magnitudeUnit: String
   magnitudeValue: String
   type: String

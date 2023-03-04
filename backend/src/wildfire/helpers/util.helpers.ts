@@ -16,8 +16,6 @@ export class UtilHelper {
         .trim()
         .replace(/[^a-zA-Z0-9 ]/g, '');
       this._year = Number.isInteger(parseInt(year, 2)) ? year : mc.DEFAULT_YEAR;
-
-      console.log(this._month, this._year);
     } catch (error) {
       console.log('DataHelper-Constructor', error);
       this._month = mc.DEFAULT_MONTH;

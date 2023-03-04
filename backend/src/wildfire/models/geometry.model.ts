@@ -1,4 +1,5 @@
 import { Field, Float, Int, ObjectType } from '@nestjs/graphql';
+import { GeoComponent } from './geo-component.model';
 
 @ObjectType()
 export class Geometry {
@@ -16,4 +17,7 @@ export class Geometry {
 
   @Field((type) => [Float], { nullable: 'items' })
   coordinates?: [number];
+
+  @Field((type) => GeoComponent, { nullable: true })
+  geoComponent: GeoComponent;
 }

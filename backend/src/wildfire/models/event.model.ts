@@ -1,4 +1,5 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { GeoComponent } from './geo-component.model';
 import { Geometry } from './geometry.model';
 
 @ObjectType()
@@ -24,12 +25,6 @@ export class Event {
   @Field({ nullable: true })
   closed?: string;
 
-  @Field({ nullable: true })
-  ISO_3166Alpha3?: string;
-
   @Field((type) => [Geometry], { nullable: 'itemsAndList' })
   geometry: Geometry[];
-
-  @Field((type) => [Event], { nullable: 'itemsAndList' })
-  events: Event[];
 }

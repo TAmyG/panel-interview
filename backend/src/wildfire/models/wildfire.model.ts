@@ -1,5 +1,6 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Event } from './event.model';
+import { GeoComponent } from './geo-component.model';
 
 @ObjectType()
 export class Wildfire {
