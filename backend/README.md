@@ -71,3 +71,35 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+Query 1 Wildfire
+
+---
+
+query wildfire($firstName: String!, $id: Int!){
+wildfire(firstName: $firstName, id: $id){
+firsName
+id
+}
+}
+
+query variables:
+{
+"firstName":"TamyVivas",
+"id": 1234
+}
+
+---
+
+Query 2 Wildfire
+
+---
+
+query {
+wildfire(firstName: "LTamy Vivas", id: 1234){
+firsName
+id
+}
+}
+
+---

@@ -25,6 +25,10 @@ export class WildfireService {
     return wildfires;
   }
 
+  getWild(id: number, firstName: string) {
+    return { id, firstName: `Name is ${firstName}` };
+  }
+
   /**
    * Leaflet uses lat-lng (or northing-easting) whereas GeoJSON uses lng-lat (or easting-northing)
    * @param coordinate GeoJSON format

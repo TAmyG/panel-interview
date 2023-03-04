@@ -1,0 +1,12 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Query {
+  wildfire(firstName: String!, id: Int!): Wildfire!
+}
+
+type Wildfire {
+  firstName: String
+  id: Int!
+}
