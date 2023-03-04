@@ -2,11 +2,32 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Event {
+  ISO_3166Alpha3: String
+  closed: String
+  description: String
+  events: [Event]
+  geometry: [Geometry]
+  id: String
+  link: String
+  title: String
+}
+
+type Geometry {
+  coordinates: [Float]!
+  date: String
+  magnitudeUnit: String
+  magnitudeValue: String
+  type: String
+}
+
 type Query {
-  wildfire(firstName: String!, id: Int!): Wildfire!
+  wildfire(month: String!, year: String!): Wildfire!
 }
 
 type Wildfire {
-  firstName: String
-  id: Int!
+  description: String!
+  events: [Event]
+  link: String!
+  title: String!
 }

@@ -1,4 +1,5 @@
 import { Args, Int, Query, Resolver } from '@nestjs/graphql';
+import { UtilHelper } from './helpers/util.helpers';
 import { Wildfire } from './models/wildfire.model';
 import { WildfireService } from './wildfire.service';
 
@@ -7,7 +8,9 @@ export class WildfireResolver {
   constructor(private readonly wildfireService: WildfireService) {}
 
   @Query((returns) => Wildfire, { name: 'wildfire' })
-  getWildfire(@Args('id', { type: () => Int }) id: number, @Args('firstName') firstName: string) {
-    return this.wildfireService.getWild(id, firstName);
+  async getWildfire(@Args('month') month: string, @Args('year') year: string) {
+    const dateH = new UtilHelper(month, year);
+    const dates: string[] = dateH.getStartEndDate();
+    return await this.wildfireService.getWildfires(dates[0], dates[1]);
   }
 }

@@ -14,14 +14,14 @@ export class WildfireService {
 
     // for rather than map because is needed to call for Geocode for each wildfire
     // so the easiest way is to mutate directly each event of wildfires response
-    for (let i = 0; i < wildfires.events.length; i++) {
-      const event: IEvent = wildfires.events[i];
-      const coords: number[] = event.geometry[0].coordinates;
-      const countryInfo: IGeoComponent | null = await this.getGeocode(coords);
-      if (countryInfo) {
-        wildfires.events[i]['ISO_3166-1_alpha-3'] = countryInfo['ISO_3166-1_alpha-3'];
-      }
-    }
+    // for (let i = 0; i < wildfires.events.length; i++) {
+    //   const event: IEvent = wildfires.events[i];
+    //   const coords: number[] = event.geometry[0].coordinates;
+    //   const countryInfo: IGeoComponent | null = await this.getGeocode(coords);
+    //   if (countryInfo) {
+    //     wildfires.events[i]['ISO_3166-1_alpha-3'] = countryInfo['ISO_3166-1_alpha-3'];
+    //   }
+    // }
     return wildfires;
   }
 
