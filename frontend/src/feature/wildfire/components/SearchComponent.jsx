@@ -22,12 +22,17 @@ export const SearchComponent = ({ setMonthYear }) => {
             <div className="row mt-4">
                 <div className="col">
                     <select
+                        aria-label="month"
                         value={searchMonth.value}
                         className="form-control"
                         onChange={onSelectChange}
                     >
                         {months.map((month) => (
-                            <option key={month} value={month}>
+                            <option
+                                data-testid="select-option"
+                                key={month}
+                                value={month}
+                            >
                                 {month}
                             </option>
                         ))}
@@ -35,6 +40,7 @@ export const SearchComponent = ({ setMonthYear }) => {
                 </div>
                 <div className="col">
                     <input
+                        aria-label="year"
                         type="number"
                         placeholder="Year"
                         className="form-control"

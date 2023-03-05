@@ -13,9 +13,9 @@ export const Wildfire = ({ title, index, geometry }) => {
     return (
         <tr>
             <th scope="row">{index + 1}</th>
-            <td>{title}</td>
-            <td>{country}</td>
-            <td>{date}</td>
+            <td aria-label="td">{title}</td>
+            <td aria-label="td">{country}</td>
+            <td aria-label="td">{date}</td>
         </tr>
     );
 };

@@ -12,4 +12,13 @@ export default defineConfig({
         strictPort: true,
         port: 5173, // you can replace this port with any port
     },
+    test: {
+        globals: true,
+        environment: 'jsdom',
+        //setupFiles: './src/test/setup.js',
+        coverage: {
+            reporter: ['text', 'json', 'html'],
+            exclude: ['node_modules/', '/src/test/setup.js'],
+        },
+    },
 });
