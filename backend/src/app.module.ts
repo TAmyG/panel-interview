@@ -13,6 +13,7 @@ import { join } from 'path';
       driver: ApolloDriver,
       // debug: false,
       // playground: false,
+      cache: 'bounded',
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true, //Sort schema lexicographically
     }),

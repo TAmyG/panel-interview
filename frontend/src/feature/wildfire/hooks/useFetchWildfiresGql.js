@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { getWilfires } from '../helpers/getWildfires';
+import { getWildfiresGql } from '../helpers/getWildfiresGql';
 /**
  * Retrieves wildfires from backend sending month and year
  * @param {Format MMM} month
  * @param {Format YYYY} year
  */
-export const useFetchWildfires = (month = 'JAN', year = '2020') => {
+export const useFetchWildfiresGql = (month = 'JAN', year = '2020') => {
     const [wildfires, setWildfires] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [ohNo, setOhNo] = useState(false);
@@ -16,7 +17,7 @@ export const useFetchWildfires = (month = 'JAN', year = '2020') => {
         if (isLoading === false) {
             setIsLoading(true);
         }
-        const newWildfires = await getWilfires(month, year);
+        const newWildfires = await getWildfiresGql(month, year);
         setWildfires(newWildfires.events);
         setIsLoading(false);
 

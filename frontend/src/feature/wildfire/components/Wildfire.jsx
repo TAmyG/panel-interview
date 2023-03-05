@@ -22,6 +22,6 @@ export const Wildfire = ({ title, index, geometry }) => {
 
 Wildfire.propTypes = {
     title: PropTypes.string.isRequired,
-    index: PropTypes.string.isRequired,
+    index: PropTypes.number.isRequired,
     geometry: PropTypes.array.isRequired,
 };

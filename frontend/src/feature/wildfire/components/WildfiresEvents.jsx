@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useFetchWildfires } from '../hooks/useFetchWildfires';
+//import { useFetchWildfires } from '../hooks/useFetchWildfires';
 import { Wildfire } from './Wildfire';
+import { useFetchWildfiresGql } from '../hooks/useFetchWildfiresGql';
 
 export const WildfiresEvents = ({ month, year }) => {
-    const [wildfires, isLoading, ohNo] = useFetchWildfires(month, year);
+    const [wildfires, isLoading, ohNo] = useFetchWildfiresGql(month, year);
     return (
         <>
             {isLoading && <h1>Loading...</h1>}
@@ -37,7 +38,7 @@ export const WildfiresEvents = ({ month, year }) => {
     );
 };
 
-Wildfire.propTypes = {
+WildfiresEvents.propTypes = {
     month: PropTypes.string.isRequired,
     year: PropTypes.string.isRequired,
 };
