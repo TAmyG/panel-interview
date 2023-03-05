@@ -7,6 +7,11 @@ import { WildfireService } from '../wildfire.service';
 export class GeometryResolver {
   constructor(private readonly wildfireService: WildfireService) {}
 
+  /**
+   * Resolve Geocoding for each wildfire event from NASA API
+   * @param geometry defines the parent object
+   * @returns geoComponent from OPENCAGE_API with geocodgin info
+   */
   @ResolveField('geoComponent', () => GeoComponent)
   async geoComponent(@Parent() geometry: Geometry) {
     const { coordinates } = geometry;

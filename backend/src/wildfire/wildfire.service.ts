@@ -1,10 +1,10 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import * as opencage from 'opencage-api-client';
-import { baseGeoURL } from 'src/constants';
 import { Wildfire } from './models/wildfire.model';
 import { GeoComponent } from './models/geo-component.model';
 import { Event } from './models/event.model';
+import { baseGeoURL } from '../constants';
 
 @Injectable()
 export class WildfireService {
@@ -13,7 +13,7 @@ export class WildfireService {
   async getWildfires(start: string, end: string): Promise<Wildfire> {
     const urlNasa: string = this.getNasaURL(start, end);
     const wildfires: Wildfire = await (await this.httpService.axiosRef.get(urlNasa)).data;
-
+    console.log('--------->', start, end);
     // for rather than map because is needed to call for Geocode for each wildfire
     // so the easiest way is to mutate directly each event of wildfires response
     for (let i = 0; i < wildfires.events.length; i++) {
